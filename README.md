@@ -6,4 +6,4 @@ Around US nos es un espacio, en donde los usuarios pueden compartir las fotos qu
 
 Se utiliza JavaScript para hacer el sitio interactivo y que los usuarios puedan registrarse, compartir y dar like a las fotos que les gusten.
 
-GitHub Pages:
+GitHub Pages: https://jesspinosara.github.io/web_project_around/
