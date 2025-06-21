@@ -1,0 +1,130 @@
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 50px auto 60px;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+}
+
+.profile__photo {
+  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.profile__info-header {
+  width: 450px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__info_name {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 16px;
+  padding: 0 16px 0 30px;
+}
+
+.profile__info_edit-button {
+  width: 24px;
+  height: 24px;
+  background: url(../images/editbutton.png);
+  border: 1px solid #ffffff;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 15px;
+}
+
+.profile__info_edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__info_hobbie {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 0 18px 16px 30px;
+  margin-top: 0;
+}
+
+.profile__info_add-button {
+  width: 150px;
+  height: 50px;
+  background: url(../images/addbutton.png);
+  background-position: center;
+  background-size: initial;
+  background-repeat: no-repeat;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  margin: 10px 0 0 150px;
+}
+
+.profile__info_add-button:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 584px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin: 20px auto;
+  }
+
+  .profile__info {
+    align-items: center;
+  }
+
+  .profile__photo {
+    margin-bottom: 10px;
+  }
+
+  .profile__info-header {
+    justify-content: center;
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+
+  .profile__info_name {
+    font-size: 22px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .profile__info_edit-button {
+    width: 18px;
+    height: 18px;
+    background-size: 12px 12px;
+    flex-shrink: 0;
+    border: 1px solid #ffffff;
+  }
+
+  .profile__info_hobbie {
+    margin: 0;
+    font-size: 16px;
+    padding: 0;
+  }
+
+  .profile__info_add-button {
+    width: 100%;
+    max-width: 280px;
+    margin: 20px 0;
+  }
+}

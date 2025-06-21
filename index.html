@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Around is a project about sharing your travel photos"
+    />
+    <meta name="author" content="Selene Espinosa" />
+    <meta name="keywords" content="HTML, CSS, SEO, Web, JavaScript" />
+    <title>AroundUS</title>
+    <link rel="stylesheet" href="favicon.ico" />
+    <link rel="stylesheet" href="vendor/normalize.css" />
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+
+  <body class="page">
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__button_close">x</button>
+        <h3 class="popup__title">Editar perfil</h3>
+        <form class="popup__form">
+          <input
+            class="popup__input popup__input_name"
+            name="name"
+            type="text"
+            placeholder="Nombre"
+          />
+          <input
+            class="popup__input popup__input_hobbie"
+            type="text"
+            name="hobbie"
+            placeholder="Acerca de mí"
+          />
+          <button class="popup__button_save" type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+
+    <header class="header">
+      <img src="images/Vector.svg" class="header__logo" alt="logo Around US" />
+    </header>
+
+    <main class="content">
+      <section class="profile">
+        <img
+          src="images/avatar.jpg"
+          class="profile__photo"
+          alt="profile photos"
+        />
+        <div class="profile__info">
+          <div class="profile__info-header">
+            <h2 class="profile__info_name">Jacques Cousteau</h2>
+            <button class="profile__info_edit-button"></button>
+          </div>
+          <p class="profile__info_hobbie">Explorador</p>
+        </div>
+        <button class="profile__info_add-button"></button>
+      </section>
+      <section class="cards">
+        <div class="cards__grid">
+          <div class="card">
+            <img
+              src="./images/valle_josemite.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Valle de Josemite</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./images/lago_louise.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Lago Louise</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./images/montañas_calvas.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Montañas Calvas</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./images/latemar.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Latemar</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./images/vanois_national.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Vanois National...</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./images/lagodiBraies.jpg"
+              class="card__image"
+              alt="Foto de paisaje"
+            />
+            <div class="card__footer">
+              <h3 class="card__title">Lago di Braies</h3>
+              <button class="card__like-button"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2024 Around The U.S.</p>
+    </footer>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
