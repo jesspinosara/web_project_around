@@ -1,17 +1,9 @@
 .profile {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 16px;
   margin: 50px auto 60px;
-}
-
-.profile__info {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 180px;
 }
 
 .profile__photo {
