@@ -24,7 +24,6 @@
 }
 
 .profile__info_name {
-  font-family: Inter;
   font-weight: 500;
   font-size: 40px;
   line-height: 48px;
@@ -47,7 +46,6 @@
 }
 
 .profile__info_hobbie {
-  font-family: Inter;
   font-weight: 400;
   font-size: 18px;
   padding: 0 18px 16px 30px;
