@@ -17,7 +17,13 @@
   <body class="page">
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__button popup__button_close">x</button>
+        <button type="button" class="popup__button-close">
+          <img
+            src="./images/closeicon.png"
+            class="popup__close-icon"
+            alt="cerrar"
+          />
+        </button>
         <h3 class="popup__title">Editar perfil</h3>
         <form class="popup__form">
           <input
@@ -32,10 +38,24 @@
             name="hobbie"
             placeholder="Acerca de mí"
           />
-          <button class="popup__button popup__button_save" type="submit">
-            Guardar
-          </button>
+          <button class="popup__button-submit" type="submit">Guardar</button>
         </form>
+      </div>
+    </div>
+
+    <div class="popupImage">
+      <div class="popupImage__container">
+        <button type="button" class="popup__button-close">
+          <img
+            src="./images/closeicon.png"
+            class="popup__close-icon"
+            alt="cerrar"
+          />
+        </button>
+        <div class="popupImage__frame">
+          <img class="popupImage__image" alt="imagen creada" />
+          <p class="popupImage__caption"></p>
+        </div>
       </div>
     </div>
 
@@ -60,79 +80,27 @@
         <button class="profile__info profile__info_add-button"></button>
       </section>
       <section class="cards">
-        <div class="cards__grid">
-          <div class="card">
-            <img
-              src="./images/valle_josemite.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Valle de Josemite</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/lago_louise.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Lago Louise</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/montañas_calvas.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Montañas Calvas</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/latemar.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Latemar</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/vanois_national.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Vanois National...</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/lagodiBraies.jpg"
-              class="card__image"
-              alt="Foto de paisaje"
-            />
-            <div class="card__footer">
-              <h3 class="card__title">Lago di Braies</h3>
-              <button class="card__like-button"></button>
-            </div>
-          </div>
-        </div>
+        <div class="cards__grid"></div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2025 Around The U.S.</p>
     </footer>
+
+    <template class="template-card">
+      <div class="card">
+        <img
+          src="./images/valle_josemite.jpg"
+          class="card__image"
+          alt="Foto de paisaje"
+        />
+        <button class="card__button-trash"></button>
+        <div class="card__footer">
+          <h3 class="card__title">Valle de Josemite</h3>
+          <button class="card__like-button"></button>
+        </div>
+      </div>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </body>

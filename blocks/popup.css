@@ -32,19 +32,23 @@
   color: #ffffff;
 }
 
-.popup__button_close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 40px;
+.popup__button-close {
   background: none;
   border: none;
-  color: #000;
   cursor: pointer;
+  position: absolute;
+  top: -30px;
+  right: -30px;
 }
 
-.popup__button_close:hover {
+.popup__button-close:hover {
   opacity: 0.6;
+}
+
+.popup__close-icon {
+  width: 1.625rem;
+  height: 1.625rem;
+  pointer-events: none;
 }
 
 .popup__title {
@@ -63,7 +67,7 @@
   width: 100%;
 }
 
-.popup__button_save {
+.popup__button-submit {
   height: 50px;
   background: #000000;
   color: #ffffff;
@@ -72,8 +76,28 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.popup__button_save:hover {
+.popup__button-submit:hover {
   opacity: 0.8;
+}
+
+.popupAdd {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popupImage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 @media screen and (max-width: 584px) {
@@ -87,14 +111,14 @@
     margin-bottom: 20px;
   }
 
-  .popup__button_close {
+  .popup__button-close {
     top: 8px;
     right: 8px;
     font-size: 20px;
   }
 
   .popup__input,
-  .popup__button_save {
+  .popup__button-submit {
     font-size: 16px;
   }
 }

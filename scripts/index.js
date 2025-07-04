@@ -1,36 +1,131 @@
-const form = document.querySelector(".popup__form");
-const inputName = document.querySelector(".popup__input_name");
-const inputHobbie = document.querySelector(".popup__input_hobbie");
-const infName = document.querySelector(".profile__info_name");
-const infHobbie = document.querySelector(".profile__info_hobbie");
-const editButton = document.querySelector(".profile__info_edit-button");
-const closeButton = document.querySelector(".popup__button_close");
-const popup = document.querySelector(".popup");
-const likeButtons = document.querySelectorAll(".card__like-button");
+//Cards
+const templateCard = document.querySelector(".template-card");
+const cardsGrid = document.querySelector(".cards__grid");
 
-function openWindow() {
+//Lista de tarjetas
+const initialCards = [
+  {
+    title: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+  },
+  {
+    title: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+  {
+    title: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+  {
+    title: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    title: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+  },
+  {
+    title: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+  },
+];
+
+//Crear tarjeta nueva
+
+function createCard(title, link) {
+  const clonedCard = templateCard.content
+    .querySelector(".card")
+    .cloneNode(true);
+  console.log(clonedCard);
+
+  const cardTitle = clonedCard.querySelector(".card__title");
+  const cardImage = clonedCard.querySelector(".card__image");
+  const cardLikeButton = clonedCard.querySelector(".card__like-button");
+  const cardTrashButton = clonedCard.querySelector(".card__button-trash");
+
+  cardTitle.textContent = title;
+  cardImage.src = link;
+
+  //Activar y desactivar like button
+  cardLikeButton.addEventListener("click", function () {
+    cardLikeButton.classList.toggle("card__like-button_active");
+  });
+
+  console.log(cardTrashButton);
+  cardTrashButton.addEventListener("click", function () {
+    clonedCard.remove();
+  });
+
+  cardsGrid.append(clonedCard);
+}
+
+function resetForm() {
+  document.querySelector(".popup__title").textContent = "Editar perfil";
+  document.querySelector(".popup__button-submit").textContent = "Guardar";
+  document.querySelector(".popup__input_name").placeholder = "Nombre";
+  document.querySelector(".popup__input_hobbie").placeholder = "Acerca de mí";
+}
+
+//Insertar todas la tarjetas iniciales
+initialCards.forEach(function (item) {
+  createCard(item.title, item.link);
+});
+
+//Abrir popup profile
+const popup = document.querySelector(".popup");
+const editButton = document.querySelector(".profile__info_edit-button");
+editButton.addEventListener("click", () => {
+  resetForm();
+  const inputName = document.querySelector(".popup__input_name");
+  const inputHobbie = document.querySelector(".popup__input_hobbie");
   inputName.value = "";
   inputHobbie.value = "";
   popup.classList.add("popup_opened");
-}
+});
 
-function saveInfo(evt) {
-  evt.preventDefault();
-  infName.textContent = inputName.value.trim();
-  infHobbie.textContent = inputHobbie.value.trim();
-  closeWindow();
-}
+//Abrir popup card
+const addCardButton = document.querySelector(".profile__info_add-button");
+addCardButton.addEventListener("click", () => {
+  document.querySelector(".popup__title").textContent = "Nuevo lugar";
+  document.querySelector(".popup__button-submit").textContent = "Crear";
+  const inputTitle = document.querySelector(".popup__input_name");
+  const inputLink = document.querySelector(".popup__input_hobbie");
+  inputTitle.placeholder = "Título";
+  inputTitle.value = "";
+  inputLink.placeholder = "Enlace a la imagen";
+  inputLink.value = "";
+  popup.classList.add("popup_opened");
+});
 
+//Cerrar popup
 function closeWindow() {
   popup.classList.remove("popup_opened");
 }
 
-form.addEventListener("submit", saveInfo);
-closeButton.addEventListener("click", closeWindow);
-editButton.addEventListener("click", openWindow);
-
-likeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    button.classList.toggle("card__like-button_active");
-  });
+//Guardar cambios
+const form = document.querySelector(".popup__form");
+const closeButton = document.querySelector(".popup__button-close");
+form.addEventListener("submit", (evt) => {
+  const titleContent = document.querySelector(".popup__title").textContent;
+  if (titleContent === "Editar perfil") {
+    console.log("Guardando datos del perfil!");
+    const infName = document.querySelector(".profile__info_name");
+    const infHobbie = document.querySelector(".profile__info_hobbie");
+    evt.preventDefault();
+    infName.textContent = document
+      .querySelector(".popup__input_name")
+      .value.trim();
+    infHobbie.textContent = document
+      .querySelector(".popup__input_hobbie")
+      .value.trim();
+  } else if (titleContent == "Nuevo lugar") {
+    console.log("Guardando datos de la carta!");
+    evt.preventDefault();
+    const title = document.querySelector(".popup__input_name").value.trim();
+    const link = document.querySelector(".popup__input_hobbie").value.trim();
+    createCard(title, link);
+    resetForm();
+  }
+  closeWindow();
 });
+closeButton.addEventListener("click", closeWindow);
