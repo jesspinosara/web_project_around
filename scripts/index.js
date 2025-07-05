@@ -1,3 +1,22 @@
+// Selección global, fuera de la función
+const popupImage = document.querySelector(".popupImage");
+const popupImageElement = popupImage.querySelector(".popupImage__image");
+const popupImageCaption = popupImage.querySelector(".popupImage__caption");
+const popupImageClose = popupImage.querySelector(".popupImage__button-close");
+
+//Cerrar popup de la imagen
+popupImageClose.addEventListener("click", () => {
+  closePopup(popupImage);
+});
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
 //Cards
 const templateCard = document.querySelector(".template-card");
 const cardsGrid = document.querySelector(".cards__grid");
@@ -56,6 +75,13 @@ function createCard(title, link) {
     clonedCard.remove();
   });
 
+  cardImage.addEventListener("click", () => {
+    popupImageElement.src = link;
+    popupImageElement.alt = title;
+    popupImageCaption.textContent = title;
+    openPopup(popupImage);
+  });
+
   cardsGrid.append(clonedCard);
 }
 
@@ -80,7 +106,7 @@ editButton.addEventListener("click", () => {
   const inputHobbie = document.querySelector(".popup__input_hobbie");
   inputName.value = "";
   inputHobbie.value = "";
-  popup.classList.add("popup_opened");
+  openPopup(popup);
 });
 
 //Abrir popup card
@@ -94,12 +120,12 @@ addCardButton.addEventListener("click", () => {
   inputTitle.value = "";
   inputLink.placeholder = "Enlace a la imagen";
   inputLink.value = "";
-  popup.classList.add("popup_opened");
+  openPopup(popup);
 });
 
 //Cerrar popup
 function closeWindow() {
-  popup.classList.remove("popup_opened");
+  closePopup(popup);
 }
 
 //Guardar cambios
