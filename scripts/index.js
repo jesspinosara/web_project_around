@@ -1,8 +1,8 @@
 // Selección global, fuera de la función
-const popupImage = document.querySelector(".popupImage");
-const popupImageElement = popupImage.querySelector(".popupImage__image");
-const popupImageCaption = popupImage.querySelector(".popupImage__caption");
-const popupImageClose = popupImage.querySelector(".popupImage__button-close");
+const popupImage = document.querySelector(".popup__image");
+const popupImageElement = popupImage.querySelector(".popup__image_photo");
+const popupImageCaption = popupImage.querySelector(".popup__image_caption");
+const popupImageClose = popupImage.querySelector(".popup__image_button-close");
 
 //Cerrar popup de la imagen
 popupImageClose.addEventListener("click", () => {

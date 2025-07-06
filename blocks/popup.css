@@ -39,8 +39,8 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  top: -30px;
-  right: -30px;
+  top: -40px;
+  right: -40px;
 }
 
 .popup__button-close:hover {
@@ -48,8 +48,8 @@
 }
 
 .popup__close-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   pointer-events: none;
 }
 
@@ -82,16 +82,7 @@
   opacity: 0.8;
 }
 
-.popupAdd {
-  display: none;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popupImage {
+.popup__image {
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -101,11 +92,11 @@
   flex-direction: column;
 }
 
-.popupImage.popup_opened {
+.popup__image.popup_opened {
   display: flex;
 }
 
-.popupImage__container {
+.popup__image_container {
   background-color: transparent;
   width: auto;
   max-width: 100%;
@@ -117,14 +108,14 @@
   position: relative;
 }
 
-.popupImage__image {
+.popup__image_photo {
   width: auto;
   max-width: 90%;
   max-height: 80vh;
   object-fit: contain;
 }
 
-.popupImage__caption {
+.popup__image_caption {
   color: white;
   font-size: 14px;
   font-weight: 400;
@@ -132,7 +123,7 @@
   margin-top: 10px;
 }
 
-.popupImage__button-close {
+.popup__image_button-close {
   position: relative;
   left: 45%;
   top: 0%;
@@ -141,7 +132,7 @@
   cursor: pointer;
 }
 
-.popupImage__close-icon {
+.popup__image_close-icon {
   width: 40px;
   height: 40px;
 }
