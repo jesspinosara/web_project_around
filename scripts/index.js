@@ -55,7 +55,6 @@ function createCard(title, link) {
   const clonedCard = templateCard.content
     .querySelector(".card")
     .cloneNode(true);
-  console.log(clonedCard);
 
   const cardTitle = clonedCard.querySelector(".card__title");
   const cardImage = clonedCard.querySelector(".card__image");
@@ -70,7 +69,6 @@ function createCard(title, link) {
     cardLikeButton.classList.toggle("card__like-button_active");
   });
 
-  console.log(cardTrashButton);
   cardTrashButton.addEventListener("click", function () {
     clonedCard.remove();
   });
@@ -85,73 +83,75 @@ function createCard(title, link) {
   cardsGrid.append(clonedCard);
 }
 
-function resetForm() {
-  document.querySelector(".popup__title").textContent = "Editar perfil";
-  document.querySelector(".popup__button-submit").textContent = "Guardar";
-  document.querySelector(".popup__input_name").placeholder = "Nombre";
-  document.querySelector(".popup__input_hobbie").placeholder = "Acerca de mí";
-}
-
 //Insertar todas la tarjetas iniciales
 initialCards.forEach(function (item) {
   createCard(item.title, item.link);
 });
 
+// Contact
+// Cerrar popups contact
+const popupContact = document.getElementById("popup_contact");
+const popupContactClose = popupContact.querySelector(".popup__button-close");
+popupContactClose.addEventListener("click", () => {
+  closePopup(popupContact);
+});
+
 //Abrir popup profile
-const popup = document.querySelector(".popup");
 const editButton = document.querySelector(".profile__info_edit-button");
 editButton.addEventListener("click", () => {
-  resetForm();
   const inputName = document.querySelector(".popup__input_name");
   const inputHobbie = document.querySelector(".popup__input_hobbie");
   inputName.value = "";
   inputHobbie.value = "";
-  openPopup(popup);
+  openPopup(popupContact);
+});
+
+//Guardar cambios
+const formContact = document.getElementById("contact_form");
+const closeContactButton = document.querySelector(".popup__button-close");
+formContact.addEventListener("submit", (evt) => {
+  // profile
+  const infName = document.querySelector(".profile__info_name");
+  const infHobbie = document.querySelector(".profile__info_hobbie");
+  evt.preventDefault();
+  infName.textContent = document
+    .querySelector(".popup__input_name")
+    .value.trim();
+  infHobbie.textContent = document
+    .querySelector(".popup__input_hobbie")
+    .value.trim();
+  closePopup(popupContact);
+});
+
+// Card
+// Cerrar popups card
+const popupCard = document.getElementById("popup_card");
+const popupCardClose = popupCard.querySelector(".popup__button-close");
+popupCardClose.addEventListener("click", () => {
+  closePopup(popupCard);
 });
 
 //Abrir popup card
 const addCardButton = document.querySelector(".profile__info_add-button");
 addCardButton.addEventListener("click", () => {
-  document.querySelector(".popup__title").textContent = "Nuevo lugar";
-  document.querySelector(".popup__button-submit").textContent = "Crear";
-  const inputTitle = document.querySelector(".popup__input_name");
-  const inputLink = document.querySelector(".popup__input_hobbie");
-  inputTitle.placeholder = "Título";
+  const inputTitle = document.querySelector(".popup__input_title");
+  const inputLink = document.querySelector(".popup__input_link");
   inputTitle.value = "";
-  inputLink.placeholder = "Enlace a la imagen";
   inputLink.value = "";
-  openPopup(popup);
+  openPopup(popupCard);
 });
-
-//Cerrar popup
-function closeWindow() {
-  closePopup(popup);
-}
 
 //Guardar cambios
-const form = document.querySelector(".popup__form");
-const closeButton = document.querySelector(".popup__button-close");
-form.addEventListener("submit", (evt) => {
-  const titleContent = document.querySelector(".popup__title").textContent;
-  if (titleContent === "Editar perfil") {
-    console.log("Guardando datos del perfil!");
-    const infName = document.querySelector(".profile__info_name");
-    const infHobbie = document.querySelector(".profile__info_hobbie");
-    evt.preventDefault();
-    infName.textContent = document
-      .querySelector(".popup__input_name")
-      .value.trim();
-    infHobbie.textContent = document
-      .querySelector(".popup__input_hobbie")
-      .value.trim();
-  } else if (titleContent == "Nuevo lugar") {
-    console.log("Guardando datos de la carta!");
-    evt.preventDefault();
-    const title = document.querySelector(".popup__input_name").value.trim();
-    const link = document.querySelector(".popup__input_hobbie").value.trim();
-    createCard(title, link);
-    resetForm();
-  }
-  closeWindow();
+const formCard = document.getElementById("place_form");
+const closeCardButton = document.querySelector(".popup__button-close");
+formCard.addEventListener("submit", (evt) => {
+  // card
+  evt.preventDefault();
+  const title = document.querySelector(".popup__input_title").value.trim();
+  const link = document.querySelector(".popup__input_link").value.trim();
+  createCard(title, link);
+  closePopup(popupCard);
 });
-closeButton.addEventListener("click", closeWindow);
+
+// General
+const popUp = document.querySelector(".popup");

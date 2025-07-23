@@ -15,9 +15,13 @@
   </head>
 
   <body class="page">
-    <div class="popup">
+    <div class="popup" id="popup_contact">
       <div class="popup__container">
-        <button type="button" class="popup__button-close">
+        <button
+          type="button"
+          class="popup__button-close"
+          id="contact_close_button"
+        >
           <img
             src="./images/closeicon.png"
             class="popup__close-icon"
@@ -25,19 +29,76 @@
           />
         </button>
         <h3 class="popup__title">Editar perfil</h3>
-        <form class="popup__form">
-          <input
-            class="popup__input popup__input_name"
-            name="name"
-            type="text"
-            placeholder="Nombre"
+        <form class="popup__form" id="contact_form">
+          <label>
+            <input
+              class="popup__input popup__input_name"
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="span-error" id="name-error"></span>
+          </label>
+          <label>
+            <input
+              class="popup__input popup__input_hobbie"
+              id="hobbie"
+              type="text"
+              name="hobbie"
+              placeholder="Acerca de mí"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="span-error" id="hobbie-error"></span>
+          </label>
+          <button class="popup__button-submit" type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="popup_card">
+      <div class="popup__container">
+        <button
+          type="button"
+          class="popup__button-close"
+          id="card_close_button"
+        >
+          <img
+            src="./images/closeicon.png"
+            class="popup__close-icon"
+            alt="cerrar"
           />
-          <input
-            class="popup__input popup__input_hobbie"
-            type="text"
-            name="hobbie"
-            placeholder="Acerca de mí"
-          />
+        </button>
+        <h3 class="popup__title">Nuevo lugar</h3>
+        <form class="popup__form" id="place_form">
+          <label>
+            <input
+              class="popup__input popup__input_title"
+              id="title"
+              name="title"
+              type="text"
+              placeholder="Título"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="span-error" id="title-error"></span>
+          </label>
+          <label>
+            <input
+              class="popup__input popup__input_link"
+              id="link"
+              type="url"
+              name="link"
+              placeholder="Enlace a la imagen"
+              required
+            />
+            <span class="span-error" id="link-error"></span>
+          </label>
           <button class="popup__button-submit" type="submit">Guardar</button>
         </form>
       </div>
@@ -48,6 +109,7 @@
         <button
           type="button"
           class="popup__button-close popup__button-close_image"
+          id="image_close_button"
         >
           <img
             src="./images/closeicon.png"
@@ -106,5 +168,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

@@ -82,6 +82,17 @@
   opacity: 0.8;
 }
 
+.popup__button-submit-disable {
+  background: #ffffff;
+  color: #cccccc;
+  border: 1px solid #cccccc;
+}
+
+.span-error {
+  border-bottom: 1px solid #ff0000;
+  color: #ff0000;
+}
+
 .popup_image {
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
