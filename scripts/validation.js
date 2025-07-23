@@ -39,5 +39,3 @@ function showInputError(input) {
   const spanElement = document.querySelector(`#${input.id}-error`);
   spanElement.textContent = input.validationMessage;
 }
-
-enableValidation();

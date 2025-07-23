@@ -153,5 +153,22 @@ formCard.addEventListener("submit", (evt) => {
   closePopup(popupCard);
 });
 
-// General
-const popUp = document.querySelector(".popup");
+// General cerrar con Esc
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+});
+
+// Cerrar con clic fuera del contenedor
+document.querySelectorAll(".popup").forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup")) {
+      closePopup(popup);
+    }
+  });
+});
