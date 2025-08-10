@@ -1,25 +1,13 @@
 import { Card } from "./Card.js";
+import {
+  openPopup,
+  closePopup,
+  closePopupClickOut,
+  closePopupEsc,
+} from "./Utils.js";
+import { FormValidator } from "./FormValidator.js";
 
-// Selección global, fuera de la función
-const popupImage = document.querySelector(".popup_image");
-const popupImageElement = popupImage.querySelector(".popup__photo");
-const popupImageCaption = popupImage.querySelector(".popup__caption");
-const popupImageClose = popupImage.querySelector(".popup__button-close_image");
-
-//Cerrar popup de la imagen
-popupImageClose.addEventListener("click", () => {
-  closePopup(popupImage);
-});
-
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-}
-
-//Cards
+//Tarjetas/Cartas
 const initialCards = [
   new Card(
     "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
@@ -52,50 +40,11 @@ initialCards.forEach(function (card) {
   cardsGrid.append(card.getElement());
 });
 
-//Crear tarjeta nueva
-function createCard(title, link) {
-  const templateCard = document.querySelector(".template-card");
-  const clonedCard = templateCard.content
-    .querySelector(".card")
-    .cloneNode(true);
-
-  const cardTitle = clonedCard.querySelector(".card__title");
-  const cardImage = clonedCard.querySelector(".card__image");
-  const cardLikeButton = clonedCard.querySelector(".card__like-button");
-  const cardTrashButton = clonedCard.querySelector(".card__button-trash");
-
-  cardTitle.textContent = title;
-  cardImage.src = link;
-
-  //Activar y desactivar like button
-  cardLikeButton.addEventListener("click", function () {
-    cardLikeButton.classList.toggle("card__like-button_active");
-  });
-
-  cardTrashButton.addEventListener("click", function () {
-    clonedCard.remove();
-  });
-
-  cardImage.addEventListener("click", () => {
-    popupImageElement.src = link;
-    popupImageElement.alt = title;
-    popupImageCaption.textContent = title;
-    openPopup(popupImage);
-  });
-
-  cardsGrid.append(clonedCard);
-}
-
-// Contact
-// Cerrar popups contact
+// PopupPerfil
 const popupContact = document.getElementById("popup_contact");
 const popupContactClose = popupContact.querySelector(".popup__button-close");
-popupContactClose.addEventListener("click", () => {
-  closePopup(popupContact);
-});
-
-//Abrir popup profile
 const editButton = document.querySelector(".profile__info_edit-button");
+
 editButton.addEventListener("click", () => {
   const inputName = document.querySelector(".popup__input_name");
   const inputHobbie = document.querySelector(".popup__input_hobbie");
@@ -104,10 +53,12 @@ editButton.addEventListener("click", () => {
   openPopup(popupContact);
 });
 
-//Guardar cambios
-const formContact = document.getElementById("contact_form");
-const closeContactButton = document.querySelector(".popup__button-close");
-formContact.addEventListener("submit", (evt) => {
+popupContactClose.addEventListener("click", () => {
+  closePopup(popupContact);
+});
+
+document.getElementById("contact_form").addEventListener("submit", (evt) => {
+  evt.preventDefault();
   // profile
   const infName = document.querySelector(".profile__info_name");
   const infHobbie = document.querySelector(".profile__info_hobbie");
@@ -121,16 +72,11 @@ formContact.addEventListener("submit", (evt) => {
   closePopup(popupContact);
 });
 
-// Card
-// Cerrar popups card
+//Popup nueva tarjeta
 const popupCard = document.getElementById("popup_card");
-const popupCardClose = popupCard.querySelector(".popup__button-close");
-popupCardClose.addEventListener("click", () => {
-  closePopup(popupCard);
-});
-
-//Abrir popup card
 const addCardButton = document.querySelector(".profile__info_add-button");
+const popupCardClose = popupCard.querySelector(".popup__button-close");
+
 addCardButton.addEventListener("click", () => {
   const inputTitle = document.querySelector(".popup__input_title");
   const inputLink = document.querySelector(".popup__input_link");
@@ -139,34 +85,20 @@ addCardButton.addEventListener("click", () => {
   openPopup(popupCard);
 });
 
-//Guardar cambios
-const formCard = document.getElementById("place_form");
-const closeCardButton = document.querySelector(".popup__button-close");
-formCard.addEventListener("submit", (evt) => {
-  // card
-  evt.preventDefault();
-  const title = document.querySelector(".popup__input_title").value.trim();
-  const link = document.querySelector(".popup__input_link").value.trim();
-  createCard(title, link);
+popupCardClose.addEventListener("click", () => {
   closePopup(popupCard);
 });
 
-// General cerrar con Esc
-
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-  }
+document.getElementById("place_form").addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const title = document.querySelector(".popup__input_title").value.trim();
+  const link = document.querySelector(".popup__input_link").value.trim();
+  const newCard = new Card(link, title);
+  cardsGrid.append(newCard.getElement());
+  closePopup(popupCard);
 });
 
-// Cerrar con clic fuera del contenedor
-document.querySelectorAll(".popup").forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup")) {
-      closePopup(popup);
-    }
-  });
-});
+document.addEventListener("keydown", closePopupEsc);
+document
+  .querySelectorAll(".popup")
+  .forEach((popup) => closePopupClickOut(popup));

@@ -1,3 +1,4 @@
+import { openPopup } from "./Utils.js";
 const templateCard = document.querySelector(".template-card");
 
 export class Card {
@@ -31,11 +32,18 @@ export class Card {
       this.clonedCard.remove();
     });
 
+    const popupImage = document.querySelector(".popup_image");
+    const popupImageElement = popupImage.querySelector(".popup__photo");
+    const popupImageCaption = popupImage.querySelector(".popup__caption");
+    const popupImageClose = popupImage.querySelector(
+      ".popup__button-close_image"
+    );
+
     this.cardImage.addEventListener("click", () => {
-      popupImageElement.src = link;
-      popupImageElement.alt = title;
-      popupImageCaption.textContent = title;
-      openPopup(popupImage);
+      popupImageElement.src = this.link;
+      popupImageElement.alt = this.title;
+      popupImageCaption.textContent = this.title;
+      this.openPopup(popupImage);
     });
 
     return this.clonedCard;
