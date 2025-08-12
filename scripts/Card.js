@@ -46,6 +46,10 @@ export class Card {
       this.openPopup(popupImage);
     });
 
+    popupImageClose.addEventListener("click", () => {
+      popupImage.classList.remove("popup_opened");
+    });
+
     return this.clonedCard;
   }
 }

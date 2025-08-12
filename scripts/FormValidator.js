@@ -11,16 +11,11 @@ export class FormValidator {
     );
   }
 
-  enableValidation(settings) {
+  enableValidation() {
     this._setEventListeners();
-    this._validateButton();
   }
 
   _setEventListeners() {
-    this.form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
-
     this.inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._showInputError(input);
@@ -28,31 +23,31 @@ export class FormValidator {
       });
     });
 
-    _showInputError(input);
-    const spanElement = document.querySelector(`#${input.id}-error`);
-    spanElement.textContent = input.validationMessage;
+    this._validateButton();
+  }
+
+  _showInputError(input) {
+    const spanElement = this.form.querySelector(`#${input.id}-error`);
+    if (!input.validity.valid) {
+      spanElement.textContent = input.validationMessage;
+      spanElement.classList.add(this.settings.inputErrorClass);
+    } else {
+      spanElement.textContent = "";
+      spanElement.classList.remove(this.settings.inputErrorClass);
+    }
   }
 
   _validateButton() {
     if (this._checkInputsValidity()) {
-      this.buttonElement.classList.add("popup__button-submit-disable");
-      this.buttonElement.disabled = false;
-    } else {
-      this.buttonElement.classList.remove("popup__button-submit-disable");
+      this.buttonElement.classList.add(this.settings.inactiveButtonClass);
       this.buttonElement.disabled = true;
+    } else {
+      this.buttonElement.classList.remove(this.settings.inactiveButtonClass);
+      this.buttonElement.disabled = false;
     }
   }
+
   _checkInputsValidity() {
-    return this.inputList.some(function (input) {
-      return !input.validity.valid;
-    });
+    return this.inputList.some((input) => !input.validity.valid);
   }
 }
-
-const settings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button-submit",
-  inactiveButtonClass: "popup__button-submit-disable",
-  inputErrorClass: "span-error",
-};

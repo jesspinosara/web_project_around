@@ -102,3 +102,17 @@ document.addEventListener("keydown", closePopupEsc);
 document
   .querySelectorAll(".popup")
   .forEach((popup) => closePopupClickOut(popup));
+
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-submit",
+  inactiveButtonClass: "popup__button-submit-disable",
+  inputErrorClass: "span-error",
+};
+
+// Seleccionar todos los formularios a validar
+document.querySelectorAll(settings.formSelector).forEach((form) => {
+  const formValidator = new FormValidator(form, settings);
+  formValidator.enableValidation();
+});
