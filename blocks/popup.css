@@ -163,6 +163,7 @@
   .popup__container {
     padding: 20px;
     max-width: 280px;
+    position: relative;
   }
 
   .popup__title {
@@ -171,9 +172,19 @@
   }
 
   .popup__button-close {
-    top: 8px;
-    right: 8px;
+    position: absolute;
+    top: -36px;
+    right: -22px;
     font-size: 20px;
+  }
+
+  .popup__button-close_image {
+    position: relative;
+    left: 45%;
+    top: 0%;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
   .popup__input,
