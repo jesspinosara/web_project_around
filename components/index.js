@@ -6,6 +6,25 @@ import {
   closePopupEsc,
 } from "./Utils.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+
+//Instancia PopupWithImage
+const popupWithImage = new PopupWithImage(".popup_image");
+popupWithImage.setEventListeners();
+//Se crean las instancias de los diferentes popup
+//UserInfo
+const userProfile = new UserInfo("nameSelector", "aboutSelector");
+
+//Popup Profile: modifica el perfiel
+const popupProfile = new PopupWithForm("#popup_contact", (data) => {
+  userProfile.setUserInfo(data.name, data.about);
+});
+//Popup Cards: Añade nuevas cartas
+const popupCards = new PopupWithForm("#popup_card", (data) => {});
+console.log(data);
 
 //Tarjetas/Cartas
 const initialCards = [
@@ -34,11 +53,29 @@ const initialCards = [
     "Lago di Braies"
   ),
 ];
+
+/*
 //Insertar todas la tarjetas iniciales
 const cardsGrid = document.querySelector(".cards__grid");
 initialCards.forEach(function (card) {
   cardsGrid.append(card.getElement());
 });
+*/
+
+//instancia para agregar Sección
+const cardsSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item.link, item.title);
+      const cardElement = card.getElement();
+      cardsSection.addItem(cardElement);
+    },
+  },
+  ".cards__grid"
+);
+
+cardsSection.renderer();
 
 // PopupPerfil
 const popupContact = document.getElementById("popup_contact");
@@ -89,14 +126,15 @@ popupCardClose.addEventListener("click", () => {
   closePopup(popupCard);
 });
 
-document.getElementById("place_form").addEventListener("submit", (evt) => {
+/*document.getElementById("place_form").addEventListener("submit", (evt) => {
   evt.preventDefault();
   const title = document.querySelector(".popup__input_title").value.trim();
   const link = document.querySelector(".popup__input_link").value.trim();
-  const newCard = new Card(link, title);
+  //const newCard = new Card(link, title);
   cardsGrid.append(newCard.getElement());
   closePopup(popupCard);
 });
+*/
 
 document.addEventListener("keydown", closePopupEsc);
 document

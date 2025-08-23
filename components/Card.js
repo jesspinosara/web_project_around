@@ -40,16 +40,17 @@ export class Card {
     );
 
     this.cardImage.addEventListener("click", () => {
-      popupImageElement.src = this.link;
-      popupImageElement.alt = this.title;
-      popupImageCaption.textContent = this.title;
-      this.openPopup(popupImage);
-    });
+      popupWithImage.open({
+        link: this.link,
+        title: this.title,
+      });
+      //this.openPopup(popupImage);
 
-    popupImageClose.addEventListener("click", () => {
-      popupImage.classList.remove("popup_opened");
-    });
+      popupImageClose.addEventListener("click", () => {
+        popupImage.classList.remove("popup_opened");
+      });
 
-    return this.clonedCard;
+      return this.clonedCard;
+    });
   }
 }
