@@ -1,20 +1,14 @@
-import { openPopup } from "./Utils.js";
-const templateCard = document.querySelector(".template-card");
-
 export class Card {
-  constructor(link, title) {
+  constructor(link, title, handleCardClick) {
     this.link = link;
     this.title = title;
-  }
-
-  openPopup(popup) {
-    popup.classList.add("popup_opened");
+    this.handleCardClick = handleCardClick;
   }
 
   getElement() {
-    this.templateCard = document.querySelector(".template-card");
-    this.clonedCard = this.templateCard.content
-      .querySelector(".card")
+    this.clonedCard = document
+      .querySelector(".template-card")
+      .content.querySelector(".card")
       .cloneNode(true);
 
     this.cardTitle = this.clonedCard.querySelector(".card__title");
@@ -32,25 +26,11 @@ export class Card {
       this.clonedCard.remove();
     });
 
-    const popupImage = document.querySelector(".popup_image");
-    const popupImageElement = popupImage.querySelector(".popup__photo");
-    const popupImageCaption = popupImage.querySelector(".popup__caption");
-    const popupImageClose = popupImage.querySelector(
-      ".popup__button-close_image"
-    );
-
+    // Evento para abrir popup con imagen
     this.cardImage.addEventListener("click", () => {
-      popupWithImage.open({
-        link: this.link,
-        title: this.title,
-      });
-      //this.openPopup(popupImage);
-
-      popupImageClose.addEventListener("click", () => {
-        popupImage.classList.remove("popup_opened");
-      });
-
-      return this.clonedCard;
+      this.handleCardClick(this.link, this.title);
     });
+
+    return this.clonedCard;
   }
 }

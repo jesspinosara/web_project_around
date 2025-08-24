@@ -5,7 +5,7 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
 
-    this.formElement = this.popupElement.querySelector(formSelector);
+    this.formElement = this.popupElement.querySelector(".popup__form");
   }
 
   //Método privado que obtiene valores de inputs
@@ -24,6 +24,7 @@ export default class PopupWithForm extends Popup {
     this.formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
+      this.close();
     });
   }
 

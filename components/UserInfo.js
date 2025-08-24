@@ -1,18 +1,21 @@
+//Se encarga de leer y presentar la información del usuario en DOM
 export default class UserInfo {
-  constructor({ nameSelector, aboutSelector }) {
-    this.nameElement = document.querySelector(nameSelector);
-    this.aboutElement = document.querySelector(aboutSelector);
+  constructor({ nameSelector, hobbieSelector }) {
+    this._nameElement = document.querySelector(nameSelector);
+    this._hobbieElement = document.querySelector(hobbieSelector);
   }
 
+  //Método público que devuelve objeto con la info del usuario
   getUserInfo() {
     return {
-      name: this.nameElement.textContent,
-      about: this.aboutElement.textContent,
+      name: this._nameElement.textContent,
+      hobbie: this._hobbieElement.textContent,
     };
   }
 
-  setUserInfo(name, about) {
-    this.nameElement.textContent = name;
-    this.aboutElement.textContent = about;
+  //Método público que toma los datos del nuevo usuario y los agrega al DOM
+  setUserInfo({ name, hobbie }) {
+    this._nameElement.textContent = name;
+    this._hobbieElement.textContent = hobbie;
   }
 }
