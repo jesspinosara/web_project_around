@@ -6,6 +6,10 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
 
     this.formElement = this.popupElement.querySelector(".popup__form");
+    this._submitButton = this.formElement.querySelector(
+      ".popup__button-submit"
+    );
+    this._defaultText = this._submitButton.textContent;
   }
 
   //Método privado que obtiene valores de inputs
@@ -24,12 +28,19 @@ export default class PopupWithForm extends Popup {
     this.formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this.close();
     });
   }
 
   close() {
     super.close();
     this.formElement.reset();
+  }
+
+  renderLoading(isLoading, loadingText = "Guardando...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._defaultText;
+    }
   }
 }

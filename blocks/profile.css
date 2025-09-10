@@ -6,11 +6,45 @@
   margin: 50px auto 60px;
 }
 
-.profile__photo {
+.profile__avatar-container {
   border-radius: 100%;
   width: 120px;
   height: 120px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profile__avatar {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.profile__avatar-edit {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.profile__avatar-edit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45) url("../images/edit_avatar.png") no-repeat
+    center/26px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit::before,
+.profile__avatar-edit:focus::before {
+  opacity: 1;
 }
 
 .profile__info-header {
